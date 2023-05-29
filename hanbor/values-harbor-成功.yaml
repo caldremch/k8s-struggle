@@ -1,0 +1,27 @@
+expose:
+  type: nodePort
+  tls:
+    enabled: false
+  nodePort:
+    name: harbor
+    ports:
+      http:
+        nodePort: 30014
+
+externalURL: http://192.168.20.150:30014
+
+persistence:
+  enabled: true
+  resourcePolicy: "keep"
+  persistentVolumeClaim:
+    registry:
+      storageClass: "nfs-client"
+    jobservice:
+      jobLog:
+        storageClass: "nfs-client"
+    database:
+      storageClass: "nfs-client"
+    redis:
+      storageClass: "nfs-client"
+    trivy:
+      storageClass: "nfs-client"

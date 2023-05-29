@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+      - ReadWriteMany  		#访问模式为只能以读写的方式挂载单个节点。
+  persistentVolumeReclaimPolicy: Retain  #PV空间回收策略为手动回收。
+  storageClassName: nfs  		#定义存储类的名字
+  nfs:
+    path: /nfsdata/my-pv # 必须要先创建my-pv文件夹,否则会报错
+    server: 192.168.205.5

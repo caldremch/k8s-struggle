@@ -1,0 +1,1 @@
+scp root@192.168.80.225:/path/filename $HOME/.ssh #（本地目录）

@@ -1,0 +1,10 @@
+# /etc/systemd/system/clash.service
+[Unit]
+Description=Clash Daemon
+After=network.target
+
+[Service]
+ExecStart=/data/clash/clash -d /data/clash
+
+[Install]
+WantedBy=default.target

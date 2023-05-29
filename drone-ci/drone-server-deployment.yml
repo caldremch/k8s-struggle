@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: drone-server
+    namespace: default
+    labels:
+      app: drone
+      type: server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drone
+      type: server
+  template:
+    metadata:
+      namespace: default
+      labels:
+        app: drone
+        type: server
+    spec:
+      volumes:
+        - name: drone-data
+          persistentVolumeClaim:
+            claimName: drone-data
+      containers:
+        - name: drone-server
+          image: drone/drone:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data
+              name: drone-data
+          imagePullPolicy: IfNotPresent
+
+          env:
+            - name: DRONE_LOGS_TRACE
+              value: 'true'
+            - name: DRONE_SERVER_HOST
+              value: 192.168.205.5:30021
+            - name: DRONE_RPC_PROTO
+              value: http
+            - name: DRONE_PROVIDER
+              value: gogs
+            - name: DRONE_LOGS_DEBUG
+              value: 'true'
+            - name: DRONE_GOGS
+              value: 'true'
+            - name: DRONE_GOGS_SERVER
+              value: http://192.168.205.5:30020
+            - name: DRONE_USER_CREATE
+              value: username:app,admin:true
+            - name: DRONE_SERVER_PROTO
+              value: http
+            - name: DRONE_RPC_SECRET
+              value: 91d26c97f10cb4e0486eca27ec5f82fa
+#      imagePullSecrets:
+#        - name: harbor

@@ -1,0 +1,18 @@
+auth:
+  password: "123456"
+master:
+  service:
+    type: NodePort
+    nodePorts:
+      redis: "30360"
+  persistence:
+    storageClass: "nfs-client"
+    size: 1Gi
+replica:
+  service:
+    type: NodePort
+    nodePorts:
+      redis: "30361"
+  persistence:
+    storageClass: "nfs-client"
+    size: 1Gi

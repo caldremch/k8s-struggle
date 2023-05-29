@@ -1,0 +1,22 @@
+global:
+  storageClass: "nfs-client"
+architecture: replication
+auth:
+  rootPassword: "root"
+#  database: "digitization_dev"
+
+image:
+  debug: true
+primary:
+  name: primary
+  service:
+    type: NodePort
+    nodePorts:
+      mysql: "30362"
+secondary:
+  name: secondary
+  replicaCount: 1
+  service:
+    type: NodePort
+    nodePorts:
+      mysql: "30363"

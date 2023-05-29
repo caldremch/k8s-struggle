@@ -1,0 +1,1 @@
+scp -r /Users/caldremch/Downloads/kubespray root@192.168.101.31:/root/

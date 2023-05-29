@@ -1,0 +1,20 @@
+global:
+  storageClass: "nfs-client"
+
+externalURL: http://192.168.20.150:30014
+# 指定密码, 用户名是:admin
+adminPassword: "123456Cdm"
+service:
+  type: NodePort
+  nodePorts:
+    http: "30014"
+    https: "30015"
+    notary: "30016"
+
+proxy:
+  noProxy: 192.168.20.150,192.168.205.5,192.168.205.6,192.168.205.7,127.0.0.1,localhost,.local,.internal,log,db,redis,nginx,core,portal,postgresql,jobservice,registry,registryctl,clair,chartmuseum,notary-server
+
+#如果是本地安装, 关闭https, 不然登录不了, 或者只能https/ip的形式来访问, 你docker也无法通过 https://ip形式来登录, 会报错:Error response from daemon: Get "https://192.168.205.5:30015/v2/": x509: cannot validate certificate for 192.168.205.5 because it doesn't contain any IP SANs
+nginx:
+  tls:
+    enabled: false

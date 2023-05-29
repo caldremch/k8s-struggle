@@ -1,0 +1,20 @@
+persistence:
+  storageClass: "nfs-client"
+auth:
+  username: root
+  password: "123456"
+
+#service:
+#  type: NodePort
+#  nodePorts:
+#    amqp: "30363"
+#    manager: "30364"
+
+#volumePermissions:
+#  enabled: true
+#  resources:
+#    limits:
+#      cpu: 300m
+#      memory: 1Gi
+
+

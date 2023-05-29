@@ -1,0 +1,43 @@
+expose:
+  type: nodePort
+  tls:
+    enabled: false
+
+externalURL: http://192.168.205.5:30002
+
+persistence:
+  enabled: true
+  resourcePolicy: "keep"
+  persistentVolumeClaim:
+    registry:
+      storageClass: "nfs-client"
+      subPath: "registry"
+      accessMode: ReadWriteOnce
+      size: 5Gi
+    chartmuseum:
+      storageClass: "nfs-client"
+      subPath: "chartmuseum"
+      accessMode: ReadWriteOnce
+      size: 5Gi
+    jobservice:
+      jobLog:
+        storageClass: "nfs-client"
+        subPath: "jobservice"
+        accessMode: ReadWriteOnce
+        size: 1Gi
+    database:
+      storageClass: "nfs-client"
+      subPath: "database"
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    redis:
+      storageClass: "nfs-client"
+      subPath: "redis"
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    trivy:
+      storageClass: "nfs-client"
+      subPath: "trivy"
+      accessMode: ReadWriteOnce
+      size: 5Gi
+
